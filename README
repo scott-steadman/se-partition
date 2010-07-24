@@ -1,10 +1,12 @@
 == Partition Plugin
 
-This partition uses native database techniques to partition tables based on field values.
+This plugin uses native database techniques to partition tables based on field values.
 
 Currently this plugin only works for Postgres and will only partition based on a date or string field.
 
 == Postgres Notes
+
+The postgres code was heavily borrowed from: http://valgogtech.blogspot.com/2008/04/table-partitioning-automation-triggers.html
 
 In order for postgres partitioning to work most effectively, you need to make sure you have 
 constraint_exclusion set to 'on' or 'partition' in your postgresql.conf
