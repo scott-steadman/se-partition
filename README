@@ -1,0 +1,19 @@
+== Partition Plugin
+
+This partition uses native database techniques to partition tables based on field values.
+
+Currently this plugin only works for Postgres and will only partition based on a date or string field.
+
+== Postgres Notes
+
+In order for postgres partitioning to work most effectively, you need to make sure you have 
+constraint_exclusion set to 'on' or 'partition' in your postgresql.conf
+
+You'll also need to add the following monkey-patch:
+
+  class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
+    # partition triggers can't return values. :(
+    def supports_insert_with_returning?
+      false
+    end
+  end
