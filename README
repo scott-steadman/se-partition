@@ -4,6 +4,10 @@ This plugin uses native database techniques to partition tables based on field v
 
 Currently this plugin only works for Postgres and will only partition based on a date or string field.
 
+== Installation
+
+script/plugin install git://github.com/ss/se-partition.git
+
 == Example migration
 
 class CreateUser < ActiveRecord::Migration
