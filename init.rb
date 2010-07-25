@@ -1,2 +1,2 @@
-require 'lib/se/partition'
-require 'lib/se/partition/postgres'
+require 'se/partition'
+require 'se/partition/postgresql'

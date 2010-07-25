@@ -4,6 +4,26 @@ This plugin uses native database techniques to partition tables based on field v
 
 Currently this plugin only works for Postgres and will only partition based on a date or string field.
 
+== Example migration
+
+class CreateUser < ActiveRecord::Migration
+
+  def self.up
+    create_table :users do |t|
+      t.string :name
+      t.timestamps
+    end
+    add_index :users, :created_at
+
+    # Partition user table by week
+    SE::Partition.partition(User, :created_at, :interval => 'week', :verbose => false)
+  end
+
+  def self.down
+    drop_table :users
+  end
+end
+
 == Postgres Notes
 
 The postgres code was heavily borrowed from: http://valgogtech.blogspot.com/2008/04/table-partitioning-automation-triggers.html
