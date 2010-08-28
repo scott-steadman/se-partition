@@ -131,7 +131,7 @@ module SE
           CREATE OR REPLACE FUNCTION partition_for_#{table_name} (partition_string #{sql_partition_type}) RETURNS "name" AS
           $BODY$
             DECLARE
-              needed_partition_table_name CONSTANT "name" := '#{table_name}_' || lower(partition_string);
+              needed_partition_table_name CONSTANT "name" := '#{table_name}_' || lower(regexp_replace(partition_string, E'[^[:alnum:]]', '_', 'g'));
             BEGIN
 
               #{check_for_table}

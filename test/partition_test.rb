@@ -72,9 +72,9 @@ class PartitionTest < ActiveSupport::TestCase
     SE::Partition.partition(StringModel, :key, :verbose => false)
     assert_difference "StringModel.count", 3 do
       assert_difference "StringModel.connection.tables.count", 2 do
-        StringModel.create!(:key => 'one')
-        StringModel.create!(:key => 'Two')
-        StringModel.create!(:key => 'tWo')
+        StringModel.create!(:key => '7Day-2010-01-01')
+        StringModel.create!(:key => '7day-2010-01-01')
+        StringModel.create!(:key => '1Month-2010-01-01')
       end
     end
     StringModel.connection.tables.select {|ii| /string_models_/ =~ ii}.each do |table|
